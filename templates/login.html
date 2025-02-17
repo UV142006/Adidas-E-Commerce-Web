@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+    <div class="logo"><img src="{{ url_for('static', filename='images/adidaslogo.jpg') }}" alt="Adidas Logo" width="70px" height="40px">
+
+    </div>
+        <a class="navbar-brand" href="{{ url_for('home') }}">Adidas Store</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                {% if 'user_id' in session %}
+                
+                    <li class="nav-item"><a class="nav-link" href="#">{{ session['username'] }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+{% block content %}
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+  
+                  <div class="text-center">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Adidas Logo" widht="100px" height="70px">
+                      
+                    <h4 class="mt-1 mb-3">We are Team Adidas</h4>
+                  </div>
+  
+                  <form action="{{ url_for('login') }}" method="POST">
+                    <p>Login to your account </p>
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="text" name="email" placeholder="Email" required class="form-control">
+                    </div>  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="password" name="password" placeholder="Password" required class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-dark">Login</button>
+                </form>
+                
+  
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-black px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="h-2 py-3">We are more than just a company</h4>
+                  <p class="small mb-0">At Adidas, we believe in pushing boundaries and redefining possibilities.Our journey goes 
+                    beyond creating high-performance sportswear; it's about empowering athletes and enthusiasts alike to reach their
+                    full potential. With a commitment to innovation, sustainability, and excellence, we strive to inspire individuals
+                    to chase their dreams, challenge limits, and make an impact.Join us as we continue to shape the future of sports 
+                    and lifestyle, one step at a time.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="text-center  bg-black text-light " >
+    <p>&copy; 2025 Adidas Store</p>
+</footer>
+{% endblock %}
